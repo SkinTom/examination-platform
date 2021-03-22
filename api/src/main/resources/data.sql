@@ -1,0 +1,53 @@
+insert into platform_user_role(role, description) VALUES ("ROLE_USER", "default role for user");
+
+INSERT INTO platform_users(first_name, last_name, username, email, password, active) VALUES ("Tomasz", "Skinder", "TomSki", "ts@wp.pl", "{bcrypt}$2y$12$iTR0SzarvHMf.fjtkywsmOmEffxhJ2B6PFfY6VE9DoFBoCiJjJeRW", true);
+INSERT INTO platform_users_roles VALUES(1, 1);
+
+-- insert into user_role(role, description) VALUES ("ROLE_USER", "default role for user");
+--
+-- INSERT INTO user(first_name, last_name, username, email, password, active) VALUES ("Tomasz", "Skinder", "TomSki", "ts@wp.pl", "{bcrypt}$2y$12$iTR0SzarvHMf.fjtkywsmOmEffxhJ2B6PFfY6VE9DoFBoCiJjJeRW", true);
+-- INSERT INTO user_roles VALUES(1, 1);
+--
+-- INSERT INTO user(first_name, last_name, username, email, password, active) VALUES ("Jan", "Nowak", "JanNowak", "jn@gmail.com", "{bcrypt}$2y$12$iTR0SzarvHMf.fjtkywsmOmEffxhJ2B6PFfY6VE9DoFBoCiJjJeRW", true);
+-- INSERT INTO user_roles VALUES(2, 1);
+--
+-- INSERT INTO user(first_name, last_name, username, email, password, active) VALUES ("Piotr", "Kowalski", "kowalski", "kowal@gmail.com", "{bcrypt}$2y$12$iTR0SzarvHMf.fjtkywsmOmEffxhJ2B6PFfY6VE9DoFBoCiJjJeRW", true);
+-- INSERT INTO user_roles VALUES(3, 1);
+--
+-- INSERT INTO user(first_name, last_name, username, email, password, active) VALUES ("Bartosz", "Adamczyk", "Bartek", "bad@gmail.com", "{bcrypt}$2y$12$iTR0SzarvHMf.fjtkywsmOmEffxhJ2B6PFfY6VE9DoFBoCiJjJeRW", true);
+-- INSERT INTO user_roles VALUES(4, 1);
+--
+-- INSERT INTO exam (enable_time, name, number_question_collection, question_collection, random_answers, random_question, status, time, user_id) VALUES (false, 'Programowanie obiektowe - Java', 0, false, false, false, 'W trakcie tworzenia', 0, 1);
+--
+-- INSERT INTO question (points, question, exam_id) VALUES (1, 'Czy podany kod spowoduje błąd: Object pies = "Pies"', 1);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('Tak', false, 1);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('Nie', true, 1);
+--
+-- INSERT INTO question (points, question, exam_id) VALUES (1, 'Jaką domyślną wartość przyjmuje każda niezainicjowana zmienna typu referencyjnego?', 1);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('null', true, 2);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('zero', false, 2);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('0', false, 2);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('false', false, 2);
+--
+-- INSERT INTO question (points, question, exam_id) VALUES (3, 'Zaznacz, które z poniżej wymienionych typów są poprawnymi typami, które mogą zwracać metody.', 1);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('null', false, 3);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('int', true, 3);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('double', true, 3);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('String', true, 3);
+--
+-- INSERT INTO question (points, question, exam_id) VALUES (1, 'Czy w Javie możliwe jest wielodziedziczenie klas?', 1);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('Tak', false, 4);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('Nie', true, 4);
+--
+-- INSERT INTO question (points, question, exam_id) VALUES (1, 'Czy w Javie możliwe jest dziedziczenie konstruktorów?', 1);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('Tak', false, 5);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('Nie', true, 5);
+--
+-- INSERT INTO question (points, question, exam_id) VALUES (1, 'Jak nazywana jest sytuacja, gdy w klasie dziedziczącej definiujemy metodę o takiej samej sygnaturze jak w nadklasie?', 1);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('Przeciążanie (overloading)', false, 6);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('Przesłanianie (Overriding)', true, 6);
+-- INSERT INTO answer (answer, correct, question_id) VALUES ('Przesuwanie (Overmove)', false, 6);
+--
+-- INSERT INTO user_group (name, user_id) VALUES ('grupa numer 1', 1);
+--
+--
