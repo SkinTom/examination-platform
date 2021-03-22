@@ -1,0 +1,48 @@
+mat-dialog-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 500px;
+
+    div.exam-time {
+        mat-form-field {
+            margin-left: 32px;
+        }
+    }
+
+    div.exam-status {
+        label {
+            font-size: 1rem;
+            margin: 14px 0;
+        }
+
+        mat-radio-group {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px;
+
+            mat-radio-button {
+                margin: 4px 0;
+            }
+        }
+    }
+
+    div.additional-option {
+        div {
+            display: flex;
+            flex-direction: column;
+
+            mat-slide-toggle {
+                margin: 4px 0;
+            }
+
+            div {
+                display: inline;
+                
+                mat-form-field {
+                    margin-left: 32px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+<div *ngIf="group != null">    
+    <h1>Grupa: {{ group.name }}</h1>
+    <div>
+        <button mat-raised-button matTooltip="Dodaj nowego użytkownika do grupy" [matTooltipShowDelay]="500" (click)="addMemberDialog()">Dodaj użytkownika</button>
+        <button mat-raised-button matTooltip="Usuń całą grupę" [matTooltipShowDelay]="500" (click)="deleteGroup()">Usuń grupę</button>
+    </div>
+</div>
+
+<mat-spinner *ngIf="showSpinner && group != null"></mat-spinner>
+
+<p *ngIf="group != null && group.members.length < 1 && !showSpinner">Do grupy nie należy żaden użytkownik</p>
+
+<table *ngIf="group != null && group.members.length >= 1 && !showSpinner" mat-table [dataSource]="group.members" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="num">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> Imię </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Nazwisko </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Nazwa użytkownika </th>
+        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Operacja </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button matTooltip="Usuń użytkownka z grupy" [matTooltipShowDelay]="500" (click)="deleteMember(element.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

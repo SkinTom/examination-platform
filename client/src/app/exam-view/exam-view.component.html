@@ -1,0 +1,49 @@
+<div class="content">
+
+    <nav>
+        <h1>{{exam.name}} ({{sumPoints()}} pkt)</h1>
+        <div>
+            <button mat-button color="primary" (click)="examSettings(exam.id)">Ustawienia</button>
+            <button mat-button color="primary" (click)="examPreview(exam.id)">Podgląd</button>
+            <button mat-raised-button color="primary" (click)="examShare()">Udostępnij</button>
+        </div>
+    </nav>
+
+    <button mat-fab color="primary" class="add-question-button" (click)="addQuestion()" matTooltip="Dodaj pytanie">
+        <mat-icon>add</mat-icon>
+    </button>
+
+    <section>
+        <h2 *ngIf="exam.questions.length == 0">Ten egzamin nie zawiera jeszcze żadnych pytań!</h2>
+
+        <div *ngFor="let question of exam.questions; let i=index">
+
+            <mat-card>
+                <h3>{{i + 1}}. {{question.question}} ({{question.points}} pkt)</h3>
+
+                <ul *ngFor="let answer of question.answers">
+                    <li>
+                        <mat-checkbox type="checkbox" [checked]="answer.correct" color="primary">
+                            {{answer.answer}}
+                        </mat-checkbox>
+                    </li>
+                </ul>
+
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="editQuestion(question)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edytuj</span>
+                    </button>
+                    <button mat-menu-item (click)="deleteQuestion(question.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Usuń</span>
+                    </button>
+                </mat-menu>
+            </mat-card>
+
+        </div>
+    </section>
+</div>

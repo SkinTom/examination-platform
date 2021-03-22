@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Wynik egzaminu</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <h1 style="font-weight: 500;">Zdobyte punkty: {{ scoredPoints }} / {{ maxPoints }}</h1>
+        <h1>Wynik procentowy: {{ percentage }}%</h1>
+        <!-- <h1 *ngIf="time !== 0 && time != null">Czas: {{ time }}</h1> -->
+        <h1>Poprawne odpowiedzi: {{ correctAnswers }}</h1>
+        <h1>Błędne odpowiedzi: {{ incorrectAnswers }}</h1>
+        <button mat-raised-button color="primary" (click)="end()">Zakończ</button>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Ustawienia egzaminu</h2>
+
+<mat-dialog-content>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Nazwa egzaminu</mat-label>
+        <input matInput type="text" [(ngModel)]="exam.name" name="name" />
+    </mat-form-field>
+
+    <div class="exam-time">
+        <mat-slide-toggle color="primary" [(ngModel)]="exam.enableTime" name="enableTime">Czas egzaminu
+        </mat-slide-toggle>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Czas(min)</mat-label>
+            <input matInput type="number" [(ngModel)]="exam.time" name="time" [disabled]="!exam.enableTime" />
+        </mat-form-field>
+    </div>
+
+    <div class="exam-status">
+        <label>Status egzaminu:</label>
+        <mat-radio-group color="primary" [(ngModel)]="exam.status" name="status">
+            <mat-radio-button [value]="examStatus[0]">{{examStatus[0]}}</mat-radio-button>
+            <mat-radio-button [value]="examStatus[1]">{{examStatus[1]}}</mat-radio-button>
+            <mat-radio-button [value]="examStatus[2]">{{examStatus[2]}}</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div class="additional-option">
+        <h3>Dodatkowe opcje:</h3>
+        <div>
+            <mat-slide-toggle color="primary" [(ngModel)]="exam.randomAnswers" name="randomAnswers">Odpowiedzi w losowej kolejności
+            </mat-slide-toggle>
+
+            <mat-slide-toggle color="primary" [(ngModel)]="exam.randomQuestion" name="randomQuestion">Pytania w losowej kolejności
+            </mat-slide-toggle>
+
+            <div>
+                <mat-slide-toggle color="primary" [(ngModel)]="exam.questionCollection" name="questionCollection">Zbiór
+                    pytań</mat-slide-toggle>
+                <mat-form-field appearance="outline">
+                    <mat-label>Liczba pytań</mat-label>
+                    <input matInput type="number" [(ngModel)]="exam.numberQuestionCollection"
+                        name="numberQuestionCollection" [disabled]="!exam.questionCollection" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="close()">Anuluj</button>
+    <button type="button" mat-raised-button color="primary" mat-dialog-close (click)="save()">Zapisz</button>
+</mat-dialog-actions>

@@ -1,0 +1,112 @@
+<div class="content">
+
+    <mat-tab-group>
+        <mat-tab label="Egzaminy utworzone przeze mnie">
+
+            <button mat-raised-button color="primary" class="create-exam" (click)="createExam()">Utwórz egzamin</button>
+
+            <mat-form-field class="filter">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Szukaj">
+            </mat-form-field>
+
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+                <ng-container matColumnDef="num">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+                    <td mat-cell *matCellDef="let element; let i = index">
+                        {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex *
+                        this.paginator.pageSize}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name" class="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="name"> Nazwa </th>
+                    <td mat-cell *matCellDef="let element" class="exam-name-col">
+                        <span (click)="examView(element.id)">{{element.name}}</span>
+                        <span class="options">
+                            <button mat-icon-button matTooltip="Edytuj egzamin" (click)="examView(element.id)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Wyniki użytkowników z egzaminu"
+                                (click)="examResults(element.id)">
+                                <mat-icon>assessments</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Usuń egzamin" (click)="deleteExam(element.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="time">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Czas(min) </th>
+                    <td mat-cell *matCellDef="let element">
+                        <ng-container *ngIf="element.enableTime === true">{{element.time}}</ng-container>
+                        <ng-container *ngIf="element.enableTime === false"> - </ng-container>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                    <td mat-cell *matCellDef="let element">{{element.status}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">Nie utworzyłeś jeszcze żadnego egzaminu</td>
+                </tr>
+
+            </table>
+
+            <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButton></mat-paginator>
+
+        </mat-tab>
+
+        <mat-tab label="Egzaminy udostępnione dla mnie">
+
+            <table mat-table [dataSource]="dataSourceSharedExam" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="num">
+                    <th mat-header-cell *matHeaderCellDef> # </th>
+                    <td mat-cell *matCellDef="let element; let i = index">{{i+1}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+                    <td mat-cell *matCellDef="let element">{{element.exam.name}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element">
+                        <span *ngIf="element.completed !== true">{{element.exam.status == inDesign ? 'Oczekiwanie' :
+                            element.exam.status}}</span>
+                        <span *ngIf="element.completed === true">Zakończony</span>
+
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="option">
+                    <th mat-header-cell *matHeaderCellDef> Operacja </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-button *ngIf="element.exam.status === active && element.completed !== true"
+                            (click)="start(element.exam.id, element.id)">rozpocznij</button>
+                        <button mat-button *ngIf="element.completed === true"
+                            (click)="seeResult(element.id)">wyniki</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsSharedExam"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsSharedExam;"></tr>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">Żaden egzamin nie został Ci udostępniony</td>
+                </tr>
+            </table>
+
+        </mat-tab>
+
+    </mat-tab-group>
+</div>

@@ -1,0 +1,32 @@
+<nav>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span class="exam-title">Platforma Egzaminacyjna</span>
+
+            <ng-container *ngIf="loginStatus">
+                <div class="menu-items">
+                    <button mat-button routerLink="/exams">Egzaminy</button>
+                    <button mat-button routerLink="/groups">Grupy</button>
+                    <button mat-button routerLink="/account">Konto</button>
+                </div>
+
+                <!-- space beewtwen elements -->
+                <span class="spacer"></span>
+
+                {{username}}
+
+                <button mat-icon-button matTooltip="Wyloguj" (click)="handleLogout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                </button>
+            </ng-container>
+
+            <ng-container *ngIf="!loginStatus">
+                <!-- space beewtwen elements -->
+                <span class="spacer"></span>
+                <button mat-button (click)="viewLoginPage()">Zaloguj się</button>
+                <button mat-button (click)="viewRegisterPage()">Zarejestruj się</button>
+            </ng-container>
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+</nav>

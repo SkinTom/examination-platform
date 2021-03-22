@@ -1,0 +1,57 @@
+mat-toolbar {
+    display: flex;
+    height: 64px;
+    justify-content: space-between;
+
+    h1 {
+        color: white;
+        padding: 20px;
+    }
+}
+
+div.spinner {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: calc(100vh - 20px);
+}
+
+main {
+    width: 720px;
+    margin: 34px auto;
+    padding-bottom: 100px;
+
+    div {
+        mat-card {
+            margin: 15px 0;
+            
+            h3 {
+                font-weight: 500;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                overflow: visible; 
+                
+                li {
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+}
+
+section {
+    position: fixed;
+    right: 100px;
+    top: 83px;
+    padding: 15px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    mat-card{
+        div {
+            padding: 10px 0;
+        }
+    }
+}

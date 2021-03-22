@@ -1,0 +1,7 @@
+<header *ngIf="!(router.url === '/exams/preview/exam' || router.url === '/exams/active/exam')">
+  <app-menu></app-menu>
+</header>
+
+<section>
+  <router-outlet></router-outlet>
+</section>

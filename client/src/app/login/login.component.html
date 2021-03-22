@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Zaloguj się</mat-card-title>
+    </mat-card-header>
+
+    <form #loginForm="ngForm" novalidate>
+        <mat-card-content>
+
+            <div class="login-error" *ngIf="invalidLogin">Podano niepoprawne dane. Spróbuj ponownie.</div>
+
+            <mat-form-field>
+                <mat-label>Nazwa użytkownika</mat-label>
+                <input matInput type="text" #usern="ngModel" [(ngModel)]="username" name="username" required />
+                <mat-error  *ngIf="!usern?.valid && (usern?.dirty || usern?.touched)">
+                    <span  *ngIf="usern.errors.required">
+                       Nazwa użytkownika jest wymagana
+                    </span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Hasło</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" #pass="ngModel" [(ngModel)]="password" name="password" minlength="6" required />
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error  *ngIf="!pass?.valid && (pass?.dirty || pass?.touched)">
+                    <span  *ngIf="pass.errors.required">
+                        Hasło jest wymagane
+                    </span>
+                    <span  *ngIf="pass.errors.minlength">
+                        Hasło musi mieć co najmniej 6 znaków
+                    </span>
+                </mat-error>
+            </mat-form-field>
+
+        </mat-card-content>
+        
+        <button mat-raised-button color="primary" (click)="handleLogin()" [disabled]="!loginForm.valid">Zaloguj się</button>
+    </form>
+
+    <div>Nie posiadasz konta? <a routerLink="/register">Utwórz konto!</a></div>
+</mat-card>

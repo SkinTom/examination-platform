@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Usuń pytanie</h2>
+
+<mat-dialog-content>
+    <p>Czy napewno chcesz usunąć to pytanie?</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="close()">Anuluj</button>
+    <button type="button" mat-raised-button color="warn" mat-dialog-close (click)="delete()">Usuń</button>
+</mat-dialog-actions>

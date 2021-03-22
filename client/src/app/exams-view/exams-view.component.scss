@@ -1,0 +1,72 @@
+// imports
+@import '../app.component';
+
+mat-tab-group {
+    margin-top: 8px;
+    mat-tab {
+        padding-top: 16px
+    }
+}
+
+button.create-exam {
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+mat-form-field.filter {
+    display: block;
+    margin-top: 12px;
+}
+
+table {
+    width: 100%;
+    margin-top: 0;
+
+    tr {
+        th.name, td.exam-name-col {
+            overflow: hidden;
+            width: 50%;
+        }
+
+        td.exam-name-col {
+            span.options {
+                margin: 0 12px;
+                display: none;
+            }
+        }
+    }
+
+    tr:hover {
+        background: #eee;
+
+        td.exam-name-col {
+            position: relative;
+
+            span.options {
+                display: inline;
+                position: absolute;
+                right: 0;
+                overflow: auto;
+                top: 5px;
+            }
+        }
+    }
+
+    tr:first-of-type:hover {
+        th{
+            background: white;
+        }
+    }
+}
+
+h1 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color:#444;
+    font-weight: 500;
+}
+
+.content {
+    width: 1000px;
+    margin: 0 auto;
+}

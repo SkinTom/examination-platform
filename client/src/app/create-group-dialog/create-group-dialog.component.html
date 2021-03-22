@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Tworzenie nowej grupy</h2>
+
+<form #createGroupForm="ngForm">
+
+    <mat-dialog-content>
+        <!-- form -->
+        <mat-form-field color="primary" apperance="fill">
+            <mat-label>Nazwa grupy</mat-label>
+            <input matInput type="text" #n="ngModel" [(ngModel)]="group.name" name="name" autocomplete="off" required />
+            <mat-error *ngIf="!n?.valid && (n?.dirty || n?.touched)">
+                <span *ngIf="n.errors.required">Nazwa grupy jest wymagana</span>
+            </mat-error>
+        </mat-form-field>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-button (click)="close()">Anuluj</button>
+        <button type="submit" mat-raised-button color="primary" mat-dialog-close (click)="saveGroup()" [disabled]="!createGroupForm.valid">Utwórz</button>
+    </mat-dialog-actions>
+
+</form>

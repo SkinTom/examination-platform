@@ -1,0 +1,61 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Utwórz konto</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="registerForm" novalidate>
+        <mat-card-content>
+
+            <mat-form-field>
+                <mat-label>Imię</mat-label>
+                <input matInput type="text" formControlName="firstName">
+                <mat-error *ngIf="f.firstName.errors && f.firstName.errors.required">Imię jest wymagane</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nazwisko</mat-label>
+                <input matInput type="text" formControlName="lastName">
+                <mat-error *ngIf="f.lastName.errors && f.lastName.errors.required">Nazwisko jest wymagane</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nazwa użytkownika</mat-label>
+                <input matInput type="text" formControlName="username">
+                <mat-error *ngIf="f.username.errors && f.username.errors.required">Nazwa użytkownika jest wymagana</mat-error>
+                <mat-error *ngIf="f.username.errors && f.username.errors?.usernameExists">Ta nazwa użytkownika jest już zajęta</mat-error>
+            </mat-form-field>
+        
+            <!-- <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" />
+                <mat-error *ngIf="f.email.errors && f.email.errors.required">Adres email jest wymagany</mat-error>
+                <mat-error *ngIf="f.email.errors && f.email.errors.email">Proszę wprowadzić poprawny adres email</mat-error>
+            </mat-form-field> -->
+    
+            <mat-form-field>
+                <mat-label>Hasło</mat-label>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-pressed]="hidePassword">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="f.password.errors && f.password.errors.required">Hasło jest wymagane</mat-error>
+                <mat-error *ngIf="f.password.errors && f.password.errors.minlength">Hasło musi mieć co najmniej 6 znaków</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Potwierdź hasło</mat-label>
+                <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword" />
+                <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-pressed]="hideConfirmPassword">
+                    <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.required">To pole jest wymagane</mat-error>
+                <mat-error *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.mustMatch">Hasła muszą być takie same</mat-error>
+            </mat-form-field>
+
+        </mat-card-content>
+        
+        <button mat-raised-button color="primary" (click)="handleRegister()" [disabled]="registerForm.invalid">Utwórz konto</button>
+    </form>
+
+    <div>Posiadasz już konto? <a routerLink="/login">Zaloguj się!</a></div>
+</mat-card>

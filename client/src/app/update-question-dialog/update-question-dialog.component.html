@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Edytuj pytanie</h2>
+
+<form [formGroup]="questionForm" novalidate>
+
+    <mat-dialog-content>
+
+        <!-- <div class="option-row"> -->
+        <mat-form-field appearance="fill">
+            <mat-label>Punkty</mat-label>
+            <input matInput formControlName="points" type="number" required/>
+            <mat-error *ngIf="!points?.valid && (points?.dirty || points?.touched)">
+                <span *ngIf="points.errors.required">Musisz podać liczbę punktów</span>
+            </mat-error>
+        </mat-form-field>
+        
+            <!-- <mat-slide-toggle class="toggle">Multiply choice</mat-slide-toggle>
+            <mat-slide-toggle class="toggle">Required</mat-slide-toggle> -->
+        <!-- </div> -->
+
+        <mat-form-field appearance="fill" class="question">
+            <mat-label>Treść pytania</mat-label>
+            <textarea matInput formControlName="question" autocomplete="off" required></textarea>
+            <mat-error *ngIf="!question?.valid && (question?.dirty || question?.touched)">
+                <span *ngIf="question.errors.required">Musisz podać treść pytania</span>
+            </mat-error>
+        </mat-form-field>
+
+        <ng-container formArrayName="answers">
+            <div *ngFor="let _ of answers.controls; let i=index">
+                {{i + 1}}.
+                <ng-container [formGroupName]="i">
+                    <mat-form-field color="accent" appearance="standard" class="answers">      
+                        <mat-label>Odpowiedź {{i + 1}}</mat-label>              
+                        <input matInput type="text" formControlName="answer" class="answer" autocomplete="off" required/>
+                    </mat-form-field>
+                    <!-- <input type="hidden" formControlName="id" /> -->
+                    <button mat-icon-button (click)="removeAnswer(i)" matTooltip="Usuń odpowiedź">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                    <mat-checkbox type="checkbox" formControlName="correct" color="primary">
+                        Poprawna
+                    </mat-checkbox>
+                </ng-container>
+            </div>
+        </ng-container>
+
+        <button mat-raised-button color="accent" type="button" (click)="addAnswer()" class="add-answer-button">Dodaj odpowiedź</button>
+
+    </mat-dialog-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button (click)="close()">Anuluj</button>
+        <button type="submit" mat-raised-button color="primary" (click)="updateQuestion()" [disabled]="questionForm.invalid" mat-dialog-close>Zapisz</button>
+    </mat-dialog-actions>
+
+</form>

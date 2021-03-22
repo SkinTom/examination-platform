@@ -1,0 +1,59 @@
+<div class="spinner" *ngIf="showSpinner">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!showSpinner">
+    <mat-toolbar color="primary">
+        <nav>
+            <button mat-button *ngIf="router.url === '/exams/preview/exam'" (click)="backToExamView()">
+                <mat-icon>arrow_back</mat-icon>
+                <span>Wróć</span>
+            </button>
+        </nav>
+
+        <h1>{{exam.name}}</h1>
+
+        <div></div>
+    </mat-toolbar>
+
+    <main *ngIf="exam.questions.length > 0">
+
+        <app-exam-result *ngIf="submitted" [maxPoints]="maxPoints" [scoredPoints]="points" [time]="time"
+            [name]="exam.name" [correctAnswers]="correctAnswers" [incorrectAnswers]="incorrectAnswers">
+        </app-exam-result>
+
+        <div *ngIf="!submitted">
+
+            <mat-card *ngFor="let question of exam.questions; let i=index">
+                <h3>{{i + 1}}. {{question.question}} ({{question.points}} pkt)</h3>
+                <ul *ngFor="let answer of question.answers">
+                    <li>
+                        <mat-checkbox type="checkbox" color="primary" [(ngModel)]="answer.correct"
+                            name="answer.correct">
+                            {{answer.answer}}
+                        </mat-checkbox>
+                    </li>
+                </ul>
+            </mat-card>
+
+            <button mat-raised-button *ngIf="router.url === '/exams/active/exam'" color="primary"
+                (click)="submitExam()">Wyślij</button>
+            <button mat-raised-button *ngIf="router.url === '/exams/preview/exam'" color="primary"
+                (click)="submitPreviewExam()">Wyślij</button>
+
+        </div>
+    </main>
+
+    <main *ngIf="!submitted && exam.questions.length === 0">
+        Ten egzamin nie zawiera żadnych pytań!
+    </main>
+
+    <section *ngIf="!submitted && exam.questions.length > 0">
+        <mat-card >
+            <div *ngIf="exam.enableTime === true">
+                <countdown #cd [config]="{leftTime: exam.time * 60}" (event)="onTimerFinished($event)"></countdown>
+            </div>
+            <div>Liczba pytań: {{exam.questions.length}}</div>
+        </mat-card>
+    </section>
+</div>

@@ -1,0 +1,24 @@
+div {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 32px;
+
+    mat-card {
+        margin: 0 32px;
+        flex-basis: 40%;
+    
+        mat-card-title {
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                align-self: center;
+            }
+        }
+    }
+    
+    section {
+        margin-right: 32px;
+        flex-basis: 60%;
+    }
+}

@@ -1,0 +1,66 @@
+<mat-card>
+    <h1>Konto użytkownika</h1>
+
+    <form #updateAccountForm="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Imię</mat-label>
+            <input matInput type="text" #fName="ngModel" [(ngModel)]="firstName" name="firstName" required />
+            <mat-error *ngIf="!fName?.valid && (fName?.dirty || fName?.touched)">
+                <span  *ngIf="fName.errors.required">
+                    Imię jest wymagane
+                 </span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Nazwisko</mat-label>
+            <input matInput type="text" #lName="ngModel" [(ngModel)]="lastName" name="lastName" required />
+            <mat-error *ngIf="!lName?.valid && (lName?.dirty || lName?.touched)">
+                <span  *ngIf="lName.errors.required">
+                    Nazwisko jest wymagane
+                 </span>
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="updateAccount()" [disabled]="updateAccountForm.invalid">Zapisz zmiany</button>
+    </form>
+    
+    <div><mat-divider></mat-divider></div>
+
+    <form [formGroup]="changePasswordForm" >
+        <h2>Zmiana hasła:</h2>
+
+        <div>
+            <mat-form-field appearance="outline"> 
+                <mat-label>Obecne hasło</mat-label>
+                <input matInput [type]="hideCurrentPassword ? 'password' : 'text'" formControlName="currentPassword"  />
+                <button mat-icon-button matSuffix (click)="hideCurrentPassword = !hideCurrentPassword" [attr.aria-pressed]="hideCurrentPassword">
+                    <mat-icon>{{hideCurrentPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="f.currentPassword.errors && f.currentPassword.errors.required">Obecne hasło jest wymagane</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nowe hasło</mat-label>
+                <input matInput [type]="hideNewPassword ? 'password' : 'text'" formControlName="newPassword"/>
+                <button mat-icon-button matSuffix (click)="hideNewPassword = !hideNewPassword" [attr.aria-pressed]="hideNewPassword">
+                    <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="f.newPassword.errors && f.newPassword.errors.required">Hasło jest wymagane</mat-error>
+                <mat-error *ngIf="f.newPassword.errors && f.newPassword.errors.minlength">Hasło musi mieć co najmniej 6 znaków</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Powtórz hasło</mat-label>
+                <input matInput [type]="hideNewPasswordRepeat ? 'password' : 'text'" formControlName="newPasswordRepeat" />
+                <button mat-icon-button matSuffix (click)="hideNewPasswordRepeat = !hideNewPasswordRepeat" [attr.aria-pressed]="hideNewPasswordRepeat">
+                    <mat-icon>{{hideNewPasswordRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="f.newPasswordRepeat.errors && f.newPasswordRepeat.errors.required">To pole jest wymagane</mat-error>
+                <mat-error *ngIf="f.newPasswordRepeat.errors && f.newPasswordRepeat.errors.mustMatch">Hasła muszą być takie same</mat-error>
+            </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="changePassword()" [disabled]="changePasswordForm.invalid">Zmień hasło</button>
+    </form>
+</mat-card>

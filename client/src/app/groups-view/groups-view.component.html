@@ -1,0 +1,27 @@
+<div>
+    <mat-card>
+        <mat-card-title>
+            <span>Moje grupy</span>
+            <button mat-fab color="primary" class="add-question-button" (click)="createGroup()" matTooltip="Utwórz nową grupe">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-card-title>
+
+        <mat-card-content>
+            <mat-spinner *ngIf="showSpinner" [diameter]="50"></mat-spinner>
+
+            <div *ngIf="groups.length == 0">Nie utworzyłeś jeszcze żadnej grupy</div>
+
+            <mat-selection-list #grp [multiple]=false>
+                <mat-list-option *ngFor="let group of groups" [value]="group.id">
+                    {{ group.name }}
+                </mat-list-option>
+            </mat-selection-list>
+
+        </mat-card-content>
+    </mat-card>
+
+    <section>
+        <app-group-view [selectedGroup]="grp.selectedOptions.selected[0]?.value"></app-group-view>
+    </section>
+</div>
