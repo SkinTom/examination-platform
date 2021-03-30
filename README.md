@@ -16,7 +16,7 @@ The project was created as part of my Engineering Thesis. The purpose of the pro
 ![sample exam](https://github.com/SkinTom/examination-platform/blob/master/img/add-question.jpg)
 
 ## Technologies
-API is created with:
+API was created with:
 * Java 8
 * Spring Boot 
 * Spring MVC
@@ -25,7 +25,7 @@ API is created with:
 * Hibernate
 * MySQL
 
-Client is created with:
+Client was created with:
 * Angular 10
 * TypeScript
 * Sass(SCSS)
@@ -36,7 +36,7 @@ Client is created with:
 Before running the application you have to:
 * install MySQL on your local device and create a schema called _exam-platform_
 * have a development environemnt (eg IntelliJ IDEA, Visual Studio Code)
-* clone the repo `https://github.com/SkinTom/examination-platform.git`
+* clone the repo `git clone https://github.com/SkinTom/examination-platform.git`
 
 ## How to use
 Run API on a local device:
